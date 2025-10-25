@@ -29,24 +29,27 @@ const items = document.querySelectorAll('.deadline-format h4');
 let tempDate = new Date();
 let tempYear = tempDate.getFullYear();
 let tempMonth = tempDate.getMonth();
+let tempDay = tempDate.getDate();
+console.log(tempDate);
 
-let futureDate = new Date(2025, 10, 29, 17, 30, 0);
+// let futureDate = new Date(2025, 10, 29, 17, 30, 0);
+const futureDate = new Date(tempYear, tempMonth, tempDay + 10, 17, 30, 0);
 
 const year = futureDate.getFullYear();
 let month = futureDate.getMonth();
 month = months[month];
 const date = futureDate.getDate();
-const weekday = futureDate.getDay();
-const day = weekdays[weekday];
+const weekday = weekdays[futureDate.getDay()];
 const hours = futureDate.getHours();
 const minutes = futureDate.getMinutes();
 const seconds = futureDate.getSeconds();
 
-giveaway.textContent = `giveaway ends on ${day}, ${date} ${month} ${year} ${hours}:${minutes}pm`;
+giveaway.textContent = `giveaway ends on ${weekday}, ${date} ${month} ${year} ${hours}:${minutes}pm`;
 
 // future time in milliseconds
 const futureTime = futureDate.getTime();
 
+console.log(new Date(futureTime));
 function getRemainingTime() {
   const today = new Date().getTime();
   const t = futureTime - today;
